@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/p_login_bg"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="change"
+        android:text="换肤"
+        app:layout_constraintEnd_toStartOf="@id/btn_reset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="day"
+        android:text="日间模式"
+        app:layout_constraintEnd_toStartOf="@id/btn_night"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_change" />
+
+    <Button
+        android:id="@+id/btn_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="night"
+        android:text="夜间模式"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_day"
+        app:layout_constraintTop_toBottomOf="@id/btn_reset" />
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="reset"
+        android:text="默认主题"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_change"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--测试TextView，因为Button也是继承自TextView-->
+    <Button
+        android:id="@+id/btn_text_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="测试文字颜色与selector换肤"
+        android:textColor="@color/selector_color_test"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_day" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/icon_cool"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:text="测试TextView drawableLeft"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:typeface="normal"
+        app:layout_constraintTop_toBottomOf="@id/btn_text_test" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

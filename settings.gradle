@@ -1,0 +1,3 @@
+include ':skinmaker'
+include ':app'
+rootProject.name = "SkinDemo"
