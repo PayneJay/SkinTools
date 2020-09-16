@@ -2,6 +2,7 @@ package com.leather.skindemo.skin;
 
 import android.app.Activity;
 import android.app.Application;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
@@ -19,7 +20,10 @@ public class SkinLifecycle implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+        //更新状态栏皮肤
         SkinThemeUtils.updateStatusBarColor(activity);
+        //获取要换肤的字体
+        Typeface typeface = SkinThemeUtils.getSkinTypeface(activity);
         LayoutInflater layoutInflater = LayoutInflater.from(activity);
         try {
             //如果不通过反射修改mFactorySet的值，则正常运行的时候会抛异常。
@@ -32,7 +36,7 @@ public class SkinLifecycle implements Application.ActivityLifecycleCallbacks {
             e.printStackTrace();
         }
         //添加自定义的创建View的工厂
-        SkinLayoutFactory skinLayoutFactory = new SkinLayoutFactory(activity);
+        SkinLayoutFactory skinLayoutFactory = new SkinLayoutFactory(activity, typeface);
         layoutInflater.setFactory2(skinLayoutFactory);
 
         //注册观察者

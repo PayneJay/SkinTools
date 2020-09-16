@@ -1,7 +1,9 @@
 package com.leather.skindemo.skin;
 
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 import com.leather.skindemo.skin.model.SkinPain;
 import com.leather.skindemo.skin.model.SkinView;
@@ -19,6 +21,10 @@ public class SkinAttribute {
      * 需要换肤的控件集合
      */
     private List<SkinView> skinViews = new ArrayList<>();
+    /**
+     * 字体
+     */
+    private Typeface typeface;
 
     static {
         ATTRIBUTES.add("background");
@@ -30,6 +36,16 @@ public class SkinAttribute {
         ATTRIBUTES.add("drawableRight");
         ATTRIBUTES.add("drawableTop");
         ATTRIBUTES.add("drawableBottom");
+        //自定义属性，局部换肤
+        ATTRIBUTES.add("skinTypeface");
+    }
+
+    public SkinAttribute(Typeface typeface) {
+        this.typeface = typeface;
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
     }
 
     /**
@@ -68,18 +84,16 @@ public class SkinAttribute {
         }
 
         //如果有需要替换的属性，则加到换肤控件集合中
-        if (!skinPains.isEmpty()) {
+        if (!skinPains.isEmpty() || view instanceof TextView) {
             SkinView skinView = new SkinView(view, skinPains);
-            skinView.applySkin();
+            skinView.applySkin(typeface);
             skinViews.add(skinView);
         }
     }
 
     public void applySkin() {
         for (SkinView skinView : skinViews) {
-            if (skinView != null) {
-                skinView.applySkin();
-            }
+            skinView.applySkin(typeface);
         }
     }
 }

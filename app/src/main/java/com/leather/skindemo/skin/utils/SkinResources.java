@@ -3,6 +3,7 @@ package com.leather.skindemo.skin.utils;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
@@ -99,5 +100,46 @@ public class SkinResources {
         this.skinResources = appResources;
         this.skinPkgName = packageName;
         isDefaultSkin = TextUtils.isEmpty(skinPkgName) || null == skinResources;
+    }
+
+    /**
+     * 获取字体属性
+     *
+     * @param typefaceId 属性id
+     * @return 字体
+     */
+    public Typeface getTypeface(int typefaceId) {
+        if (typefaceId == 0) {
+            return Typeface.DEFAULT;
+        }
+        String typefacePath = getTypefacePath(typefaceId);
+        if (TextUtils.isEmpty(typefacePath)) {//如果是默认皮肤，则返回默认字体
+            return Typeface.DEFAULT;
+        }
+
+        if (isDefaultSkin) {//不需要更换字体,用默认的即可
+            return Typeface.createFromAsset(mAppResources.getAssets(), typefacePath);
+        }
+        return Typeface.createFromAsset(skinResources.getAssets(), typefacePath);
+    }
+
+    /**
+     * 根据属性id获取字体的路径
+     * <string name="typeface_global">font/global.ttf</string>
+     *
+     * @param typefaceId 属性id（即typeface_global）
+     * @return 通过这个方法拿到的其实是font/global.ttf,还需要用createFromAsset加载
+     */
+    private String getTypefacePath(int typefaceId) {
+        if (isDefaultSkin) {//如果是默认皮肤，则返回默认字体
+            return mAppResources.getString(typefaceId);
+        }
+
+        int identifier = getIdentifier(typefaceId);
+        if (identifier == 0) {//没有设置字体，不需要更换，用默认的即可
+            return mAppResources.getString(typefaceId);
+        }
+        //返回要更换的字体路径
+        return skinResources.getString(identifier);
     }
 }

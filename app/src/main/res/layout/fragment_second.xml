@@ -8,12 +8,17 @@
 
     <TextView
         android:id="@+id/textview_second"
+        skinTypeface="@string/typeface_special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="床前明月光，疑是地上霜"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/button_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
 
     <Button
         android:id="@+id/button_second"

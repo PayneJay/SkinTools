@@ -1,8 +1,10 @@
 package com.leather.skindemo.skin.model;
 
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +27,8 @@ public class SkinView {
         this.skinPains = skinPains;
     }
 
-    public void applySkin() {
+    public void applySkin(Typeface typeface) {
+        applyTypeface(typeface);//全局换字体
         for (SkinPain skinPain : skinPains) {
             Drawable left = null, top = null, right = null, bottom = null;
             switch (skinPain.getAttributeName()) {
@@ -64,11 +67,25 @@ public class SkinView {
                 case "drawableBottom":
                     bottom = SkinResources.getInstance().getDrawable(skinPain.getResId());
                     break;
+                case "skinTypeface"://换指定控件的字体
+                    applyTypeface(SkinResources.getInstance().getTypeface(skinPain.getResId()));
+                    break;
             }
 
             if (left != null || top != null || right != null || bottom != null) {
                 ((TextView) view).setCompoundDrawablesRelativeWithIntrinsicBounds(left, top, right, bottom);
             }
+        }
+    }
+
+    /**
+     * 换字体
+     *
+     * @param typeface 字体
+     */
+    private void applyTypeface(Typeface typeface) {
+        if (view instanceof TextView) {
+            ((TextView) view).setTypeface(typeface);
         }
     }
 }

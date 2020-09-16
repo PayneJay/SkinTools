@@ -8,14 +8,17 @@
 
     <TextView
         android:id="@+id/textview_first"
+        skinTypeface="@string/typeface_special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
+        android:text="举头望明月，低头思故乡"
         android:textColor="@color/colorAccent"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/button_first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
 
     <Button
         android:id="@+id/button_first"

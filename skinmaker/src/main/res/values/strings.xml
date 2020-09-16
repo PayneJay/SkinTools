@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">skinmaker</string>
+    <string name="app_name">skin-maker</string>
+    <string name="typeface_global">font/global.ttf</string>
+    <string name="typeface_special">font/tetai-2.ttf</string>
 </resources>
