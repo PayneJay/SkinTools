@@ -11,7 +11,7 @@
         skinTypeface="@string/typeface_special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="举头望明月，低头思故乡"
+        android:text="滚滚长江东逝水"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/button_first"

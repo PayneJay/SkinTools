@@ -84,7 +84,7 @@ public class SkinAttribute {
         }
 
         //如果有需要替换的属性，则加到换肤控件集合中
-        if (!skinPains.isEmpty() || view instanceof TextView) {
+        if (!skinPains.isEmpty() || view instanceof TextView || view instanceof ISkinViewSupport) {
             SkinView skinView = new SkinView(view, skinPains);
             skinView.applySkin(typeface);
             skinViews.add(skinView);

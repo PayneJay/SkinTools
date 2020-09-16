@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="skinTypeface" format="string" />
+    <attr name="ringColor" format="color" />
+    <attr name="textPaintColor" format="color" />
+    <attr name="barPaintColor" format="color" />
+    <attr name="paintColor" format="color" />
+
+    <declare-styleable name="MyTabLayout">
+        <attr name="skinTypeface">@string/typeface_special</attr>
+        <attr name="tabIndicatorColor">@color/color_eb002a</attr>
+        <attr name="tabTextColor">@color/color_ff9c00</attr>
+    </declare-styleable>
+
+    <declare-styleable name="BarGraphView">
+        <attr name="ringColor">@color/colorPrimary</attr>
+        <attr name="textPaintColor">@color/colorAccent</attr>
+        <attr name="barPaintColor">@color/color_ff9c00</attr>
+        <attr name="paintColor">@color/color_eb002a</attr>
+    </declare-styleable>
 </resources>

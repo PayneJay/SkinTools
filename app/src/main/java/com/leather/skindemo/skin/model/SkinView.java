@@ -4,13 +4,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 
+import com.leather.skindemo.skin.ISkinViewSupport;
 import com.leather.skindemo.skin.utils.SkinResources;
 
 import java.util.List;
@@ -29,6 +29,7 @@ public class SkinView {
 
     public void applySkin(Typeface typeface) {
         applyTypeface(typeface);//全局换字体
+        applySkinSupport();
         for (SkinPain skinPain : skinPains) {
             Drawable left = null, top = null, right = null, bottom = null;
             switch (skinPain.getAttributeName()) {
@@ -75,6 +76,15 @@ public class SkinView {
             if (left != null || top != null || right != null || bottom != null) {
                 ((TextView) view).setCompoundDrawablesRelativeWithIntrinsicBounds(left, top, right, bottom);
             }
+        }
+    }
+
+    /**
+     * 自定义控件换肤
+     */
+    private void applySkinSupport() {
+        if (view instanceof ISkinViewSupport) {
+            ((ISkinViewSupport) view).applySkin();
         }
     }
 
