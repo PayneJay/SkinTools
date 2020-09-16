@@ -1,9 +1,13 @@
 package com.leather.skindemo.skin.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 
 public class SkinThemeUtils {
+    private static int[] APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = {androidx.appcompat.R.attr.colorPrimaryDark};
+    private static int[] STATUS_BAR_COLOR_ATTRS = {android.R.attr.statusBarColor, android.R.attr.navigationBarColor};
+
     /**
      * 通过属性数组获取到对应资源id
      *
@@ -19,5 +23,28 @@ public class SkinThemeUtils {
         }
         typedArray.recycle();
         return ints;
+    }
+
+    /**
+     * 更新状态栏颜色
+     * 只有在5。0以上才能修状态栏颜色
+     *
+     * @param context activity
+     */
+    public static void updateStatusBarColor(Activity context) {
+        //获取状态栏和导航栏的色值
+        int[] statusBarId = getResId(context, STATUS_BAR_COLOR_ATTRS);
+        if (statusBarId[0] != 0) {//如果状态栏配置颜色了，就换肤
+            context.getWindow().setStatusBarColor(SkinResources.getInstance().getColor(statusBarId[0]));
+        } else {
+            //获取兼容包中的colorPrimaryDark，兼容版本
+            int[] compatResId = getResId(context, APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS);
+            if (compatResId[0] != 0) {
+                context.getWindow().setStatusBarColor(SkinResources.getInstance().getColor(compatResId[0]));
+            }
+        }
+        if (statusBarId[1] != 0) {//如果配置了导航栏的颜色了，也换肤
+            context.getWindow().setNavigationBarColor(SkinResources.getInstance().getColor(statusBarId[1]));
+        }
     }
 }

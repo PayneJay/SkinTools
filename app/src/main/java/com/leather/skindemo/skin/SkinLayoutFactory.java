@@ -1,5 +1,6 @@
 package com.leather.skindemo.skin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.leather.skindemo.skin.utils.SkinThemeUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -27,8 +30,10 @@ public class SkinLayoutFactory implements LayoutInflater.Factory2, Observer {
             Context.class, AttributeSet.class};
     //控件属性处理类
     private SkinAttribute skinAttribute;
+    private Activity activity;
 
-    public SkinLayoutFactory() {
+    public SkinLayoutFactory(Activity activity) {
+        this.activity = activity;
         skinAttribute = new SkinAttribute();
     }
 
@@ -107,6 +112,7 @@ public class SkinLayoutFactory implements LayoutInflater.Factory2, Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        SkinThemeUtils.updateStatusBarColor(activity);
         if (skinAttribute != null) {
             skinAttribute.applySkin();
         }

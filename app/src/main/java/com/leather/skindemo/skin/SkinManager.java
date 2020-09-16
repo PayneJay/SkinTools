@@ -25,6 +25,7 @@ public class SkinManager extends Observable {
         SkinResources.init(application);
         SkinPreference.init(application);
         application.registerActivityLifecycleCallbacks(new SkinLifecycle());
+        loadSkin(SkinPreference.getInstance().getSkin());
     }
 
     public static void init(Application application) {
@@ -52,7 +53,6 @@ public class SkinManager extends Observable {
             SkinPreference.getInstance().setSkin("");
             //资源管理器、皮肤资源属性等重置
             SkinResources.getInstance().reset();
-
         } else {
             try {
                 //反射创建AssetManager，用来加载资源
