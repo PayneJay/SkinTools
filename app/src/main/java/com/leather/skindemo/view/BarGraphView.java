@@ -231,12 +231,10 @@ public class BarGraphView extends View implements ISkinViewSupport {
 
 
     public static class BarGraphInfo {
-        private int color;
         private String subTitle;
         private float num;
 
-        public BarGraphInfo(int color, String subTitle, float num) {
-            this.color = color;
+        public BarGraphInfo(String subTitle, float num) {
             this.subTitle = subTitle;
             this.num = num;
         }

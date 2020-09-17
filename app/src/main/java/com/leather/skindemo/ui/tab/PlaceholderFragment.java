@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.leather.skindemo.R;
-import com.leather.skindemo.skin.utils.SkinResources;
 import com.leather.skindemo.view.BarGraphView;
 
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class PlaceholderFragment extends Fragment {
         BarGraphView barGraphView = root.findViewById(R.id.barView);
         List<BarGraphView.BarGraphInfo> list = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            BarGraphView.BarGraphInfo barGraphInfo = new BarGraphView.BarGraphInfo(SkinResources.getInstance().getColor(R.color.color_ffa59d), "子标题" + i, i + 5);
+            BarGraphView.BarGraphInfo barGraphInfo = new BarGraphView.BarGraphInfo("子标题" + i, i + 5);
             list.add(barGraphInfo);
         }
         barGraphView.setList(list);

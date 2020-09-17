@@ -8,9 +8,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.leather.skindemo.R;
 import com.leather.skindemo.skin.SkinManager;
+import com.leather.skindemo.skin.utils.NightModeConfig;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.RequestCallback;
@@ -40,16 +42,20 @@ public class SkinActivity extends AppCompatActivity {
      * 夜间模式
      */
     public void night(View view) {
-        //TODO
         Toast.makeText(this, "夜间模式", Toast.LENGTH_SHORT).show();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        NightModeConfig.getInstance().setNightMode(this, true);
+        recreate();//必须让当前的Activity重建才能生效
     }
 
     /**
      * 日间模式
      */
     public void day(View view) {
-        //TODO
         Toast.makeText(this, "日间模式", Toast.LENGTH_SHORT).show();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        NightModeConfig.getInstance().setNightMode(this, false);
+        recreate();
     }
 
     private void requestPermissions() {
