@@ -29,7 +29,7 @@ public class SkinView {
 
     public void applySkin(Typeface typeface) {
         applyTypeface(typeface);//全局换字体
-        applySkinSupport();
+        applySkinSupport();//自定义View换肤
         for (SkinPain skinPain : skinPains) {
             Drawable left = null, top = null, right = null, bottom = null;
             switch (skinPain.getAttributeName()) {
