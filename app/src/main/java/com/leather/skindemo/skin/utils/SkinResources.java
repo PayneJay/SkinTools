@@ -11,9 +11,13 @@ import androidx.core.content.res.ResourcesCompat;
 
 public class SkinResources {
     private static volatile SkinResources instance;
-    private final Resources mAppResources;
+    //用来加载默认的资源
+    private Resources mAppResources;
+    //用来加载皮肤包中的资源
     private Resources skinResources;
+    //皮肤包包名
     private String skinPkgName;
+    //是否是默认皮肤
     private boolean isDefaultSkin = true;
 
     public SkinResources(Context context) {
@@ -75,6 +79,12 @@ public class SkinResources {
         }
     }
 
+    /**
+     * 通过资源id去对应的皮肤包中去匹配资源
+     *
+     * @param resId 资源id
+     * @return 匹配到的资源id，0表示没有匹配到
+     */
     public int getIdentifier(int resId) {
         if (isDefaultSkin) {
             return resId;
@@ -96,7 +106,7 @@ public class SkinResources {
         isDefaultSkin = true;
     }
 
-    public void applySkin(Resources appResources, String packageName) {
+    public void apply(Resources appResources, String packageName) {
         this.skinResources = appResources;
         this.skinPkgName = packageName;
         isDefaultSkin = TextUtils.isEmpty(skinPkgName) || null == skinResources;

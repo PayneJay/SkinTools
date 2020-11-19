@@ -62,13 +62,14 @@ public class SkinManager extends Observable {
                 method.invoke(assetManager, path);
 
                 Resources appResources = application.getResources();
+                //用来加载资源包的资源对象
                 Resources skinResources = new Resources(assetManager, appResources.getDisplayMetrics(), appResources.getConfiguration());
 
                 //需要把加载的皮肤保存一下，在应用重启后才能继续生效
                 SkinPreference.getInstance().setSkin(path);
                 //获取外部apk（皮肤包）的包名
                 PackageInfo packageInfo = application.getPackageManager().getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
-                SkinResources.getInstance().applySkin(skinResources, packageInfo != null ? packageInfo.packageName : null);
+                SkinResources.getInstance().apply(skinResources, packageInfo != null ? packageInfo.packageName : null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
