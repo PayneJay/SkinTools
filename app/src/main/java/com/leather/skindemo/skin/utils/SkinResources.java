@@ -14,7 +14,7 @@ public class SkinResources {
     //用来加载默认的资源
     private Resources mAppResources;
     //用来加载皮肤包中的资源
-    private Resources skinResources;
+    private Resources mSkinResources;
     //皮肤包包名
     private String skinPkgName;
     //是否是默认皮肤
@@ -41,7 +41,7 @@ public class SkinResources {
     public int getColor(int resId) {
         int identifier = getIdentifier(resId);
         if (!isDefaultSkin && identifier != 0) {
-            return ResourcesCompat.getColor(skinResources, identifier, null);
+            return ResourcesCompat.getColor(mSkinResources, identifier, null);
         }
         return ResourcesCompat.getColor(mAppResources, resId, null);
     }
@@ -52,7 +52,7 @@ public class SkinResources {
     public ColorStateList getColorStateList(int resId) {
         int identifier = getIdentifier(resId);
         if (!isDefaultSkin && identifier != 0) {
-            return ResourcesCompat.getColorStateList(skinResources, identifier, null);
+            return ResourcesCompat.getColorStateList(mSkinResources, identifier, null);
         }
         return ResourcesCompat.getColorStateList(mAppResources, resId, null);
     }
@@ -60,7 +60,7 @@ public class SkinResources {
     public Drawable getDrawable(int resId) {
         int identifier = getIdentifier(resId);
         if (!isDefaultSkin && identifier != 0) {
-            return ResourcesCompat.getDrawable(skinResources, identifier, null);
+            return ResourcesCompat.getDrawable(mSkinResources, identifier, null);
         }
         return ResourcesCompat.getDrawable(mAppResources, resId, null);
     }
@@ -94,22 +94,22 @@ public class SkinResources {
         //R.drawable.ic_launcher
         String resName = mAppResources.getResourceEntryName(resId);//ic_launcher   /colorPrimaryDark
         String resType = mAppResources.getResourceTypeName(resId);//drawable
-        return skinResources.getIdentifier(resName, resType, skinPkgName);
+        return mSkinResources.getIdentifier(resName, resType, skinPkgName);
     }
 
     /**
      * 恢复默认皮肤设置
      */
     public void reset() {
-        skinResources = null;
+        mSkinResources = null;
         skinPkgName = "";
         isDefaultSkin = true;
     }
 
-    public void apply(Resources appResources, String packageName) {
-        this.skinResources = appResources;
+    public void apply(Resources skinResources, String packageName) {
+        this.mSkinResources = skinResources;
         this.skinPkgName = packageName;
-        isDefaultSkin = TextUtils.isEmpty(skinPkgName) || null == skinResources;
+        isDefaultSkin = TextUtils.isEmpty(skinPkgName) || null == this.mSkinResources;
     }
 
     /**
@@ -130,7 +130,7 @@ public class SkinResources {
         if (isDefaultSkin) {//不需要更换字体,用默认的即可
             return Typeface.createFromAsset(mAppResources.getAssets(), typefacePath);
         }
-        return Typeface.createFromAsset(skinResources.getAssets(), typefacePath);
+        return Typeface.createFromAsset(mSkinResources.getAssets(), typefacePath);
     }
 
     /**
@@ -150,6 +150,6 @@ public class SkinResources {
             return mAppResources.getString(typefaceId);
         }
         //返回要更换的字体路径
-        return skinResources.getString(identifier);
+        return mSkinResources.getString(identifier);
     }
 }

@@ -8,11 +8,11 @@ import android.graphics.Typeface;
 import com.leather.skindemo.R;
 
 public class SkinThemeUtils {
-    private static int[] APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = {androidx.appcompat.R.attr.colorPrimaryDark};
+    private static final int[] APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = {androidx.appcompat.R.attr.colorPrimaryDark};
     //状态栏和导航栏属性列表
-    private static int[] STATUS_BAR_COLOR_ATTRS = {android.R.attr.statusBarColor, android.R.attr.navigationBarColor};
+    private static final int[] STATUS_BAR_COLOR_ATTRS = {android.R.attr.statusBarColor, android.R.attr.navigationBarColor};
     //字体属性
-    private static int[] TYPEFACE_ATTRS = {R.attr.skinTypeface};
+    private static final int[] TYPEFACE_ATTRS = {R.attr.skinTypeface};
 
     /**
      * 通过属性数组获取到对应资源id

@@ -67,7 +67,8 @@ public class SkinAttribute {
                 int resId;
                 if (attributeValue.startsWith("?")) {
                     //这种就是用到了系统属性的，比如：android:background="?colorPrimary"
-                    //比如：android:background="?attr/colorPrimary",这个跟上面是一样的效果，系统会将attr/colorPrimary作为一个整体，跟color/colorAccent是一样的道理
+                    //比如：android:background="?attr/colorPrimary",这个跟上面是一样的效果，
+                    //系统会将attr/colorPrimary作为一个整体，跟color/colorAccent是一样的道理
                     //我们需要得到它对应的值,属性值是从属性下标1的位置开始的，这些值在R文件中都是以int类型存放的，需要转为int
                     int attrId = Integer.parseInt(attributeValue.substring(1));
                     resId = SkinThemeUtils.getResId(view.getContext(), new int[]{attrId})[0];

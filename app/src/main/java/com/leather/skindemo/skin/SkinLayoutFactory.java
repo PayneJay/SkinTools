@@ -61,7 +61,7 @@ public class SkinLayoutFactory implements LayoutInflater.Factory2, Observer {
         /**
          * 自定义的View是不能通过反射拿到的，需要单独处理，具体参见{@link LayoutInflater}
          */
-        if (-1 != name.indexOf('.')) {//通过这个判断是否只自定义的View
+        if (-1 != name.indexOf('.')) {//通过这个判断是否是自定义的View
             return onCreateView(name, context, attrs);
         }
         View view = null;
